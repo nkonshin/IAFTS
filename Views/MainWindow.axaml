@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:IAFTS.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="750"
+        x:Class="IAFTS.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ИСАТЛ">
+
+	<Window.Styles>
+		<StyleInclude Source="/Styles/MainStyle.axaml"/>
+	</Window.Styles>
+
+	<Grid ColumnDefinitions="2*,30,*">
+		<StackPanel Grid.Column="0">
+			<Border Height="650">
+				<Border Classes="ViewBox">
+					<StackPanel Orientation="">
+						<Label>Окно отображений</Label>
+					</StackPanel>
+				</Border>
+			</Border>
+			<StackPanel Orientation="Horizontal">
+				<Button>+ Файл .tiff</Button>
+				<Button>+ Файл .las</Button>
+				<Button>3D модель</Button>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="2">
+			<Border Height="650">
+				<Border Classes="ViewBox">
+					<StackPanel Orientation="">
+						<Label>Вывод из отчета</Label>
+					</StackPanel>
+				</Border>
+			</Border>
+			<Panel>
+				<Button HorizontalAlignment="Left">Расчет обема</Button>
+				<Button HorizontalAlignment="Right">Скачать отчет</Button>
+			</Panel>
+		</StackPanel>
+	</Grid>
+	
+</Window>
