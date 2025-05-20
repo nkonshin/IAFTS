@@ -17,14 +17,16 @@ namespace IAFTS
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow
+                var viewModel = new MainWindowViewModel();
+                var window = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = viewModel
                 };
+                viewModel.Window = window; // Устанавливаем окно в ViewModel
+                desktop.MainWindow = window;
             }
 
             base.OnFrameworkInitializationCompleted();
         }
-
     }
 }

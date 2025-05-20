@@ -1,0 +1,7 @@
+pycuda
+numpy
+laspy
+rpy2
+geopandas
+pandas
+shapely

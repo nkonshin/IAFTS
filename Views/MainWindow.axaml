@@ -31,8 +31,8 @@
 				</Border>
 			</Border>
 			<StackPanel Orientation="Horizontal">
-				<Button>+ Файл .tiff</Button>
-				<Button HorizontalAlignment="Right">+ Файл .laz</Button>
+				<Button Command="{Binding TreeDetectionViewModel.LoadTiffCommand}">+ Файл .tiff</Button>
+				<Button Command="{Binding TreeDetectionViewModel.LoadLasCommand}">+ Файл .las</Button>
 			</StackPanel>
 		</StackPanel>
 
