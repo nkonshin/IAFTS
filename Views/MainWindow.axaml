@@ -9,48 +9,80 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="ИСАТЛ">
 
-	<Window.Styles>
-		<StyleInclude Source="/Styles/MainStyle.axaml"/>
-	</Window.Styles>
+    <Window.Styles>
+        <StyleInclude Source="/Styles/MainStyle.axaml"/>
+    </Window.Styles>
 
-	<DockPanel>
-		<Menu DockPanel.Dock="Top">
-			<MenuItem Header="О нас">
-			</MenuItem>
-			<MenuItem Header="О программе"></MenuItem>
-		</Menu>
-	
+    <DockPanel>
+        <!-- Верхняя панель -->
+        <Grid DockPanel.Dock="Top" Height="56" Margin="0">
+            <!-- Фоновая фигура -->
+            <Path
+                Fill="#2DB874"
+                Stretch="Fill"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Height="56"
+                Data="M0,0 Q80,0 120,28 Q180,56 350,56 L2000,56 L2000,0 Z"/>
+            <!-- Содержимое панели -->
+            <Grid ColumnDefinitions="60,*,auto,auto,60" VerticalAlignment="Center" Height="56" Panel.ZIndex="1">
+                <!-- Логотип -->
+                <Border Grid.Column="0" Width="60" Background="Transparent"/>
+                <Grid Grid.Column="1"/>
+                <Button Grid.Column="2" Content="О нас" Margin="8,0" Padding="24,6" 
+                        Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="12"
+                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button Grid.Column="3" Content="О проекте" Margin="8,0" Padding="24,6" 
+                        Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="12"
+                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border Grid.Column="4" Width="60" Background="Transparent"/>
+            </Grid>
+        </Grid>
 
-	<Grid ColumnDefinitions="2*,30,*">
-		<StackPanel Grid.Column="0">
-			<Border>
-				<Border Classes="ViewBox">
-					<StackPanel>
-						<Label>Окно отображений</Label>
-					</StackPanel>
-				</Border>
-			</Border>
-			<StackPanel Orientation="Horizontal">
-				<Button Command="{Binding TreeDetectionViewModel.LoadTiffCommand}">+ Файл .tiff</Button>
-				<Button Command="{Binding TreeDetectionViewModel.LoadLasCommand}">+ Файл .las</Button>
-			</StackPanel>
-		</StackPanel>
+        <!-- Основной контент -->
+        <Grid ColumnDefinitions="2*,30,*" Margin="16">
+            <!-- Левая часть -->
+            <StackPanel Grid.Column="0" Spacing="8">
+                <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
+                    <StackPanel>
+                        <TextBlock Text="🔍 Окно отображения" FontSize="18" VerticalAlignment="Center"/>
+                        <!-- Здесь будет содержимое окна -->
+                        <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
 
-		<StackPanel Grid.Column="2">
-			<Border>
-				<Border Classes="ViewBox">
-					<StackPanel>
-						<Label>Вывод из отчета</Label>
-					</StackPanel>
-				</Border>
-			</Border>
-			<Panel>
-				<Button HorizontalAlignment="Left">Расчет объема</Button>
-				<Button HorizontalAlignment="Right">Скачать отчет</Button>
-			</Panel>
-		</StackPanel>
-	</Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8">
+                    <Button Content="+ Файл .tiff" Command="{Binding TreeDetectionViewModel.LoadTiffCommand}" 
+                            Background="#2DB874" Foreground="White" CornerRadius="20"/>
+                    <Button Content="+ Файл .las" Command="{Binding TreeDetectionViewModel.LoadLasCommand}" 
+                            Background="#2DB874" Foreground="White" CornerRadius="20"/>
+                </StackPanel>
+            </StackPanel>
 
-	</DockPanel>
-	
+            <!-- Правая часть -->
+            <StackPanel Grid.Column="2" Spacing="0">
+                <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
+                    <StackPanel>
+                        <TextBlock Text="🔍 Вывод из отчета" FontSize="18" VerticalAlignment="Center"/>
+                        <!-- Здесь будет содержимое окна -->
+                        <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Расчет объема" Background="#2DB874" 
+                            Foreground="White" CornerRadius="20"
+                            HorizontalAlignment="Left"/>
+                    <Button Content="Скачать отчет" Grid.Column="1" Background="#2DB874" 
+                            Foreground="White" CornerRadius="20"
+                            HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+
 </Window>
