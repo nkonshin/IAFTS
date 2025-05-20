@@ -9,6 +9,10 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="ИСАТЛ">
 
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
     <Window.Styles>
         <StyleInclude Source="/Styles/MainStyle.axaml"/>
     </Window.Styles>

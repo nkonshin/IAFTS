@@ -13,17 +13,23 @@ namespace IAFTS.Services
 
         public SearchScriptService(string scriptPath)
         {
-            _scriptPath = scriptPath;
+            // Преобразуем путь к скрипту в формат macOS
+            _scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, scriptPath);
         }
 
         public async Task ProcessDataAsync(LidarData data)
         {
             try
             {
+                // Преобразуем пути к файлам в формат macOS
+                var lasPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, data.LasFilePath);
+                var tiffPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, data.TiffFilePath);
+                var outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, data.OutputPath ?? "output");
+
                 var startInfo = new ProcessStartInfo
                 {
-                    FileName = "python",
-                    Arguments = $"{_scriptPath} {data.LasFilePath} {data.TiffFilePath} {data.OutputPath}",
+                    FileName = "python3",  // На macOS обычно python3 вместо python
+                    Arguments = $"{Path.GetFullPath(_scriptPath)} {Path.GetFullPath(lasPath)} {Path.GetFullPath(tiffPath)} {Path.GetFullPath(outputPath)}",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -41,6 +47,10 @@ namespace IAFTS.Services
                 {
                     throw new Exception($"Ошибка обработки данных: {error}");
                 }
+
+                // Добавляем логирование для отладки
+                Console.WriteLine($"Python скрипт завершился успешно");
+                Console.WriteLine($"Вывод: {output}");
             }
             catch (Exception ex)
             {

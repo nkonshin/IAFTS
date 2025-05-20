@@ -1,6 +1,5 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Tmds.DBus.Protocol;
+using IAFTS.ViewModels;
 
 namespace IAFTS.Views
 {
@@ -9,6 +8,17 @@ namespace IAFTS.Views
         public MainWindow()
         {
             InitializeComponent();
+            
+            var viewModel = new MainWindowViewModel
+            {
+                Window = this
+            };
+            
+            // Устанавливаем DataContext после инициализации компонентов
+            DataContext = viewModel;
+            
+            // Убедимся, что TreeDetectionViewModel получил ссылку на окно
+            viewModel.TreeDetectionViewModel.Window = this;
         }
     }
 }
