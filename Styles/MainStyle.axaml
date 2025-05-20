@@ -1,0 +1,39 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <!-- Add Controls for Previewer Here -->
+    </Border>
+  </Design.PreviewWith>
+	<Style Selector="Grid">
+		<Setter Property="Margin" Value="20"></Setter>
+	</Style>
+
+	<Style Selector="Label">
+		<Setter Property="Foreground" Value="#FFFFFFFF"></Setter>
+		<Setter Property="Background" Value="#1DC379"></Setter>
+		<Setter Property="FontWeight" Value="Bold"></Setter>
+		
+	</Style>
+
+	<Style Selector="Button">
+		<Setter Property="Foreground" Value="#FFFFFFFF"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Background" Value="#1DC379"></Setter>
+		<Setter Property="BorderBrush" Value="#FFFFFFFF"></Setter>
+		<Setter Property="CornerRadius" Value="10"></Setter>
+		<Setter Property="Margin" Value="0,15,0,0"></Setter>
+		<Setter Property="FontWeight" Value="Bold"></Setter>
+	</Style>
+
+
+	<Style Selector="Border.ViewBox">
+		<Setter Property="Height" Value="600"></Setter>
+		<Setter Property="Background" Value="#FFFFFFFF"></Setter>
+		<Setter Property="BorderBrush" Value="#1DC379"></Setter>
+		<Setter Property="BorderThickness" Value="5"></Setter>
+		<Setter Property="CornerRadius" Value="10"></Setter>
+	</Style>
+	
+  <!-- Add Styles Here -->
+</Styles>
