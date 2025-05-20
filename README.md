@@ -43,25 +43,32 @@
 
 ### Системные требования
 - **ОС**: Windows 10/11 (64-bit)
-- **Процессор**: 2.0 ГГц или выше
-- **ОЗУ**: 8 ГБ минимум (рекомендуется 16 ГБ)
-- **Видеокарта**: с поддержкой CUDA, минимум 6 ГБ VRAM
+- **Процессор**: 2.0 ГГц или выше (рекомендуется 4+ ядер)
+- **ОЗУ**: 8 ГБ минимум (рекомендуется 16+ ГБ для больших наборов данных)
+- **Видеокарта**: NVIDIA с поддержкой CUDA, минимум 6 ГБ VRAM (рекомендуется 8+ ГБ)
+  - Поддерживаемые архитектуры: Pascal, Volta, Turing, Ampere, Ada Lovelace
 - **Место на диске**: 5 ГБ (плюс место для входных/выходных данных)
 
 ### Необходимое ПО
-- **.NET 9.0 SDK** - [Скачать](https://dotnet.microsoft.com/download)
-- **Python 3.12+** с библиотеками:
-  - laspy
-  - geopandas
-  - pandas
-  - numpy
-  - pycuda
-  - rpy2
-  - ultralytics
-  - torch
-  - torchvision
-- **R** (для расширенного анализа)
-- **CUDA Toolkit** (для ускорения вычислений)
+1. **.NET 9.0 SDK** - [Скачать](https://dotnet.microsoft.com/download)
+2. **Python 3.12+** - [Скачать](https://www.python.org/downloads/)
+3. **CUDA Toolkit 12.4** - [Скачать](https://developer.nvidia.com/cuda-downloads)
+   - Убедитесь, что ваша видеокарта поддерживает CUDA
+   - После установки перезагрузите компьютер
+4. **cuDNN** (рекомендуется для ускорения нейронных сетей) - [Скачать](https://developer.nvidia.com/cudnn)
+5. **R** (опционально, для расширенного анализа) - [Скачать](https://cran.r-project.org/)
+
+### Установка Python-зависимостей
+После установки Python и CUDA, установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+
+Проверьте установку CUDA:
+```bash
+nvidia-smi  # Должна отобразиться информация о видеокарте и версии CUDA
+python -c "import torch; print(f'PyTorch версия: {torch.__version__}')"
+```
 
 ## Установка и запуск
 

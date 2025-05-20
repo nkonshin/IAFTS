@@ -11,7 +11,9 @@ shapely>=1.8.0
 pyproj>=3.0.0
 
 # Ускорение вычислений на GPU
-pycuda>=2021.1
+# Требуется установленная CUDA Toolkit (рекомендуется версия 12.4)
+# Скачать можно с https://developer.nvidia.com/cuda-downloads
+pycuda>=2021.1  # Python-обертка для работы с CUDA
 
 # Интеграция с R
 rpy2>=3.5.0
