@@ -9,39 +9,38 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="ИСАТЛ">
 
-	<Window.Styles>
-		<StyleInclude Source="/Styles/MainStyle.axaml"/>
-	</Window.Styles>
+    <Window.Styles>
+        <StyleInclude Source="/Styles/MainStyle.axaml"/>
+    </Window.Styles>
 
-	<Grid ColumnDefinitions="2*,30,*">
-		<StackPanel Grid.Column="0">
-			<Border Height="650">
-				<Border Classes="ViewBox">
-					<StackPanel Orientation="">
-						<Label>Окно отображений</Label>
-					</StackPanel>
-				</Border>
-			</Border>
-			<StackPanel Orientation="Horizontal">
-				<Button>+ Файл .tiff</Button>
-				<Button>+ Файл .las</Button>
-				<Button>3D модель</Button>
-			</StackPanel>
-		</StackPanel>
+    <Grid ColumnDefinitions="2*,30,*">
+        <StackPanel Grid.Column="0">
+            <Border Height="650">
+                <Border Classes="ViewBox">
+                    <StackPanel Orientation="">
+                        <Label>Окно отображений</Label>
+                    </StackPanel>
+                </Border>
+            </Border>
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding TreeDetectionViewModel.LoadTiffCommand}">+ Файл .tiff</Button>
+                <Button Command="{Binding TreeDetectionViewModel.LoadLasCommand}">+ Файл .las</Button>
+                <Button Command="{Binding TreeDetectionViewModel.ProcessDataCommand}">3D модель</Button>
+            </StackPanel>
+        </StackPanel>
 
-		<StackPanel Grid.Column="2">
-			<Border Height="650">
-				<Border Classes="ViewBox">
-					<StackPanel Orientation="">
-						<Label>Вывод из отчета</Label>
-					</StackPanel>
-				</Border>
-			</Border>
-			<Panel>
-				<Button HorizontalAlignment="Left">Расчет обема</Button>
-				<Button HorizontalAlignment="Right">Скачать отчет</Button>
-			</Panel>
-		</StackPanel>
-	</Grid>
-	
+        <StackPanel Grid.Column="2">
+            <Border Height="650">
+                <Border Classes="ViewBox">
+                    <StackPanel Orientation="">
+                        <Label>Вывод из отчета</Label>
+                    </StackPanel>
+                </Border>
+            </Border>
+            <Panel>
+                <Button HorizontalAlignment="Left">Расчет обема</Button>
+                <Button HorizontalAlignment="Right">Скачать отчет</Button>
+            </Panel>
+        </StackPanel>
+    </Grid>
 </Window>
