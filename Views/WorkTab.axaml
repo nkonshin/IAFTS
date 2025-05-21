@@ -35,10 +35,20 @@
         <Button Content="Расчет объема" Background="#2DB874" 
                 Foreground="White" CornerRadius="20"
                 HorizontalAlignment="Left"/>
-        <Button Content="Скачать отчет" Grid.Column="1" Background="#2DB874" 
+        <Button Content="Сохранить отчет" Grid.Column="1" Background="#2DB874" 
                 Foreground="White" CornerRadius="20"
-                HorizontalAlignment="Right"/>
+                HorizontalAlignment="Right"
+                Command="{Binding TreeDetectionViewModel.SaveResultsCommand}"/>
       </Grid>
+      <TextBlock Text="Выберите папку для сохранения отчета"
+                 FontSize="10"
+                 Foreground="#888"
+                 MaxWidth="140"
+                 TextWrapping="Wrap"
+                 Margin="325,4,0,0"
+                 HorizontalAlignment="Center"
+                 TextAlignment="Center"/>
+
     </StackPanel>
   </Grid>
 </UserControl>

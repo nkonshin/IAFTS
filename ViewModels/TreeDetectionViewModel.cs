@@ -29,6 +29,7 @@ namespace IAFTS.ViewModels
             LoadLasCommand = ReactiveCommand.CreateFromTask(ExecuteLoadLas);
             LoadTiffCommand = ReactiveCommand.CreateFromTask(ExecuteLoadTiff);
             ProcessDataCommand = ReactiveCommand.CreateFromTask(ExecuteProcessData);
+            SaveResultsCommand = ReactiveCommand.CreateFromTask(ExecuteSaveResults);
         }
 
         public Window? Window
@@ -123,14 +124,25 @@ namespace IAFTS.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(LidarData.LasFilePath) || string.IsNullOrEmpty(LidarData.ShpFilePath))
+                if (string.IsNullOrEmpty(LidarData.LasFilePath) || string.IsNullOrEmpty(LidarData.TiffFilePath))
                 {
-                    throw new InvalidOperationException("Не выбраны входные файлы (LAS и SHP)");
+                    throw new InvalidOperationException("Не выбраны входные файлы (LAS и TIFF)");
                 }
 
-                Console.WriteLine($"Начинаем обработку данных...");
+                // Определяем рабочую папку — ту же, что у исходного TIFF (или LAS)
+                string workDir = System.IO.Path.GetDirectoryName(LidarData.TiffFilePath) ?? System.IO.Path.GetDirectoryName(LidarData.LasFilePath) ?? Environment.CurrentDirectory;
+
+                // Формируем пути для shp, csv, image
+                LidarData.ShpFilePath = System.IO.Path.Combine(workDir, "result.shp");
+                LidarData.CsvFilePath = System.IO.Path.Combine(workDir, "result.csv");
+                LidarData.ImageFilePath = System.IO.Path.Combine(workDir, "result.jpg");
+
+                Console.WriteLine($"Рабочая папка: {workDir}");
                 Console.WriteLine($"Файл LAS: {LidarData.LasFilePath}");
+                Console.WriteLine($"Файл TIFF: {LidarData.TiffFilePath}");
                 Console.WriteLine($"Файл SHP: {LidarData.ShpFilePath}");
+                Console.WriteLine($"Файл CSV: {LidarData.CsvFilePath}");
+                Console.WriteLine($"Файл IMAGE: {LidarData.ImageFilePath}");
 
                 await _searchScriptService.ProcessDataAsync(LidarData);
             }
@@ -139,6 +151,43 @@ namespace IAFTS.ViewModels
                 Console.WriteLine($"Ошибка: {ex.Message}");
                 throw;
             }
+        }
+
+        public ReactiveCommand<Unit, Unit> SaveResultsCommand { get; }
+
+        private async Task ExecuteSaveResults()
+        {
+            if (Window == null)
+            {
+                Console.WriteLine("Ошибка: Window не инициализирован");
+                return;
+            }
+
+            var options = new FolderPickerOpenOptions
+            {
+                Title = "Выберите папку для сохранения результатов"
+            };
+            var folders = await Window.StorageProvider.OpenFolderPickerAsync(options);
+            if (folders.Count == 0)
+                return;
+
+            string targetDir = folders[0].Path.LocalPath;
+
+            // Копируем все нужные файлы
+            void CopyIfExists(string? from, string toName)
+            {
+                if (!string.IsNullOrEmpty(from) && System.IO.File.Exists(from))
+                {
+                    string dest = System.IO.Path.Combine(targetDir, toName);
+                    System.IO.File.Copy(from, dest, overwrite: true);
+                    Console.WriteLine($"Скопирован {from} -> {dest}");
+                }
+            }
+
+            CopyIfExists(LidarData.ShpFilePath, "result.shp");
+            CopyIfExists(LidarData.CsvFilePath, "result.csv");
+            CopyIfExists(LidarData.ImageFilePath, "result.jpg");
+            // Можно добавить копирование других файлов, если потребуется
         }
     }
 }
