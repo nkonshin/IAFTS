@@ -1,6 +1,7 @@
 using System;
 using ReactiveUI;
 using Avalonia.Controls;
+using System.Reactive;
 
 namespace IAFTS.ViewModels
 {
@@ -8,11 +9,28 @@ namespace IAFTS.ViewModels
     {
         private TreeDetectionViewModel? _treeDetectionViewModel;
         private Window? _window;
+        private object? _currentTabContent;
+        public ReactiveCommand<Unit, Unit> ShowAboutUsTabCommand { get; }
+        public ReactiveCommand<Unit, Unit> ShowWorkTabCommand { get; }
+        public ReactiveCommand<Unit, Unit> ShowAboutProjectTabCommand { get; }
 
         public MainWindowViewModel()
         {
             Console.WriteLine("MainWindowViewModel создан");
             TreeDetectionViewModel = new TreeDetectionViewModel();
+            ShowAboutUsTabCommand = ReactiveCommand.Create(() => {
+                CurrentTabContent = new IAFTS.Views.AboutUsTab();
+                return Unit.Default;
+            });
+            ShowWorkTabCommand = ReactiveCommand.Create(() => {
+                CurrentTabContent = CreateWorkContent();
+                return Unit.Default;
+            });
+            ShowAboutProjectTabCommand = ReactiveCommand.Create(() => {
+                CurrentTabContent = new IAFTS.Views.AboutProjectTab();
+                return Unit.Default;
+            });
+            CurrentTabContent = CreateWorkContent();
         }
 
         public Window? Window
@@ -44,6 +62,18 @@ namespace IAFTS.ViewModels
                     _treeDetectionViewModel.Window = Window;
                 }
             }
+        }
+
+        public object CurrentTabContent
+        {
+            get => _currentTabContent;
+            set => this.RaiseAndSetIfChanged(ref _currentTabContent, value);
+        }
+
+        // Метод для создания рабочего интерфейса (Grid)
+        private object CreateWorkContent()
+        {
+            return new IAFTS.Views.WorkTab();
         }
 
         public string Greeting { get; } = "Welcome to Avalonia!";

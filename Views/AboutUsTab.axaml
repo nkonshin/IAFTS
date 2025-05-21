@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="IAFTS.Views.AboutUsTab">
+  <ScrollViewer>
+    <StackPanel Margin="24" Spacing="8">
+      <TextBlock Text="Наша команда Дезоксирибонуклеиновые отчаявшиеся лемминги состоит из студентов ИКНТ группы ПМИ-7,8 и включает в себя:"
+                 FontWeight="Bold"
+                 FontSize="18"
+                 TextWrapping="Wrap"
+                 TextDecorations="Underline"
+                 Margin="0,0,0,16"/>
+      <TextBlock Text="1.  Братчиков Никита Андреевич – Организация работы команды, контроль сроков, распределение задач и принятие ключевых решений." TextWrapping="Wrap"/>
+      <TextBlock Text="2. Будников Арсений Александрович – Разработка алгоритма поиска вершин деревьев по данным ВЛС." TextWrapping="Wrap"/>
+      <TextBlock Text="3. Абрашенков Николай Павлович– Разработка вспомогательных программ для анализа ВЛС, разработка алгоритма совмещения результатов обработки ВЛС и АФС." TextWrapping="Wrap"/>
+      <TextBlock Text="4. Семенов Илья Николаевич – хз че вы делаете" TextWrapping="Wrap"/>
+      <TextBlock Text="5. Кинева Ульяна Сергеевна – Ведение технической документации, подготовка отчетов и презентаций." TextWrapping="Wrap"/>
+      <TextBlock Text="6. Сергеева Светлана Сергеевна – Оформление отчетов, разработка пользовательских интерфейсов." TextWrapping="Wrap"/>
+      <TextBlock Text="7. Мещуров Сергей Вячеславович – Проектирование и разработка интерфейса ПО, развертывание ПО, автоматизация процессов, обеспечение стабильности инфраструктуры." TextWrapping="Wrap"/>
+      <TextBlock Text="8. Коньшин Никита Михайлович – Архитектура и интеграция приложения, разработка ключевых компонентов, оптимизация интерфейса и пользовательского опыта." TextWrapping="Wrap"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

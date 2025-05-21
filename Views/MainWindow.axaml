@@ -1,11 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:IAFTS.ViewModels"
+        xmlns:views="using:IAFTS.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
         x:Class="IAFTS.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="ИСАТЛ">
 
@@ -14,7 +14,8 @@
     </Window.Styles>
 
     <DockPanel>
-        <!-- Верхняя панель -->
+
+        <!-- Верхняя панель с кнопками -->
         <Grid DockPanel.Dock="Top" Height="56" Margin="0">
             <!-- Фоновая фигура -->
             <Path
@@ -24,65 +25,33 @@
                 VerticalAlignment="Top"
                 Height="56"
                 Data="M0,0 Q80,0 120,28 Q180,56 350,56 L2000,56 L2000,0 Z"/>
-            <!-- Содержимое панели -->
-            <Grid ColumnDefinitions="60,*,auto,auto,60" VerticalAlignment="Center" Height="56" Panel.ZIndex="1">
-                <!-- Логотип -->
-                <Border Grid.Column="0" Width="60" Background="Transparent"/>
-                <Grid Grid.Column="1"/>
-                <Button Grid.Column="2" Content="О нас" Margin="8,0" Padding="24,6" 
-                        Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="12"
-                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Button Grid.Column="3" Content="О проекте" Margin="8,0" Padding="24,6" 
-                        Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="12"
-                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Border Grid.Column="4" Width="60" Background="Transparent"/>
+            <!-- Центрированные по высоте кнопки -->
+            <Grid Height="56" VerticalAlignment="Stretch" Panel.ZIndex="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="-11,-13,0,0"
+                            Spacing="12">
+                    <Button Content="Работа" Padding="36,10"
+                            Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="24"
+                            Command="{Binding ShowWorkTabCommand}"/>
+                    <Button Content="О команде" Padding="36,10"
+                            Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="24"
+                            Command="{Binding ShowAboutUsTabCommand}"/>
+                    <Button Content="О проекте" Padding="36,10"
+                            Background="#43e6a8" Foreground="Black" BorderBrush="Transparent" CornerRadius="24"
+                            Command="{Binding ShowAboutProjectTabCommand}"/>
+                </StackPanel>
             </Grid>
         </Grid>
 
         <!-- Основной контент -->
-        <Grid ColumnDefinitions="2*,30,*" Margin="16">
-            <!-- Левая часть -->
-            <StackPanel Grid.Column="0" Spacing="8">
-                <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
-                    <StackPanel>
-                        <TextBlock Text="🔍 Окно отображения" FontSize="18" VerticalAlignment="Center"/>
-                        <!-- Здесь будет содержимое окна -->
-                        <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
-                    </StackPanel>
-                </Border>
+        <ContentControl Content="{Binding CurrentTabContent}"/>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8">
-                    <Button Content="+ Файл .tiff" Command="{Binding TreeDetectionViewModel.LoadTiffCommand}" 
-                            Background="#2DB874" Foreground="White" CornerRadius="20"/>
-                    <Button Content="+ Файл .las" Command="{Binding TreeDetectionViewModel.LoadLasCommand}" 
-                            Background="#2DB874" Foreground="White" CornerRadius="20"/>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- Правая часть -->
-            <StackPanel Grid.Column="2" Spacing="0">
-                <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
-                    <StackPanel>
-                        <TextBlock Text="🔍 Вывод из отчета" FontSize="18" VerticalAlignment="Center"/>
-                        <!-- Здесь будет содержимое окна -->
-                        <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
-                    </StackPanel>
-                </Border>
-
-                <Grid Margin="0,8,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Content="Расчет объема" Background="#2DB874" 
-                            Foreground="White" CornerRadius="20"
-                            HorizontalAlignment="Left"/>
-                    <Button Content="Скачать отчет" Grid.Column="1" Background="#2DB874" 
-                            Foreground="White" CornerRadius="20"
-                            HorizontalAlignment="Right"/>
-                </Grid>
-            </StackPanel>
-        </Grid>
     </DockPanel>
 
 </Window>

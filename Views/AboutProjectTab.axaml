@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="IAFTS.Views.AboutProjectTab">
+  <ScrollViewer>
+    <StackPanel Margin="24" Spacing="8">
+      <TextBlock Text="О проекте:" FontWeight="Bold" FontSize="18" TextDecorations="Underline" Margin="0,0,0,16"/>
+      <TextBlock TextWrapping="Wrap">
+        Руководит проектом Г.В. Зотина. В сотрудничестве с ООО «Центр космических технологий и услуг» мы создаем инновационные решения для автоматизации и цифровизации работ по таксации лесных насаждений.
+      </TextBlock>
+      <TextBlock Text="Наши преимущества перед конкурентами:" FontWeight="Bold" TextDecorations="Underline"/>
+      <TextBlock TextWrapping="Wrap">
+        Точность: Использование нейросетевых алгоритмов позволяет достичь отклонения в определении запаса древостоя всего 10%, что в 2-3 раза точнее аналогов.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap">
+        Экономичность: Снижение затрат на таксацию до 40% и уменьшение потерь при вырубке до 65%.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap">
+        Производительность: Объем полевых работ сокращается вдвое благодаря работе с пробными площадями.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap">
+        Универсальность: Модель адаптируется для участков площадью до 1 млн га и более.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap">
+        Полученные данные таксации объективны и легко проверяются камерально
+      </TextBlock>
+      <TextBlock Text="Решаемые задачи:" FontWeight="Bold" TextDecorations="Underline"/>
+      <TextBlock TextWrapping="Wrap">
+        Наш проект соответствует целям Указа Президента РФ №204 от 07.05.2018, направленным на создание сквозных цифровых технологий и трансформацию приоритетных отраслей экономики. Мы автоматизируем таксацию леса, ускоряя процессы, повышая точность и снижая затраты, что особенно актуально для России с её 350 млн га земель лесного фонда.
+      </TextBlock>
+      <TextBlock Text="Технологическая основа:" FontWeight="Bold" TextDecorations="Underline"/>
+      <TextBlock TextWrapping="Wrap">
+        Решение базируется на современных методах обработки данных дистанционного зондирования, воздушного лазерного сканирования (ВЛС) и аэрофотосъемки (АФС), дополненных нейросетевыми алгоритмами машинного обучения.
+      </TextBlock>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

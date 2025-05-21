@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="IAFTS.Views.WorkTab">
+  <Grid ColumnDefinitions="2*,30,*" Margin="16">
+    <!-- Левая часть -->
+    <StackPanel Grid.Column="0" Spacing="8">
+      <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
+        <StackPanel>
+          <TextBlock Text="🔍 Окно отображения" FontSize="18" VerticalAlignment="Center"/>
+          <!-- Здесь будет содержимое окна -->
+          <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
+        </StackPanel>
+      </Border>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8">
+        <Button Content="+ Файл .tiff" Command="{Binding TreeDetectionViewModel.LoadTiffCommand}"
+                Background="#2DB874" Foreground="White" CornerRadius="20"/>
+        <Button Content="+ Файл .las" Command="{Binding TreeDetectionViewModel.LoadLasCommand}"
+                Background="#2DB874" Foreground="White" CornerRadius="20"/>
+      </StackPanel>
+    </StackPanel>
+    <!-- Правая часть -->
+    <StackPanel Grid.Column="2" Spacing="0">
+      <Border Background="#CAF3CF" CornerRadius="8" Padding="8">
+        <StackPanel>
+          <TextBlock Text="🔍 Вывод из отчета" FontSize="18" VerticalAlignment="Center"/>
+          <!-- Здесь будет содержимое окна -->
+          <Border Height="400" Background="White" CornerRadius="6" Margin="0,8,0,0"/>
+        </StackPanel>
+      </Border>
+      <Grid Margin="0,8,0,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Расчет объема" Background="#2DB874" 
+                Foreground="White" CornerRadius="20"
+                HorizontalAlignment="Right" Margin="0,0,8,0"/>
+        <Button Content="Скачать отчет" Grid.Column="1" Background="#2DB874" 
+                Foreground="White" CornerRadius="20"
+                HorizontalAlignment="Left"/>
+      </Grid>
+    </StackPanel>
+  </Grid>
+</UserControl>
