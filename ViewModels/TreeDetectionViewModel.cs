@@ -123,14 +123,14 @@ namespace IAFTS.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(LidarData.LasFilePath) || string.IsNullOrEmpty(LidarData.TiffFilePath))
+                if (string.IsNullOrEmpty(LidarData.LasFilePath) || string.IsNullOrEmpty(LidarData.ShpFilePath))
                 {
-                    throw new InvalidOperationException("Не выбраны входные файлы");
+                    throw new InvalidOperationException("Не выбраны входные файлы (LAS и SHP)");
                 }
 
                 Console.WriteLine($"Начинаем обработку данных...");
                 Console.WriteLine($"Файл LAS: {LidarData.LasFilePath}");
-                Console.WriteLine($"Файл TIFF: {LidarData.TiffFilePath}");
+                Console.WriteLine($"Файл SHP: {LidarData.ShpFilePath}");
 
                 await _searchScriptService.ProcessDataAsync(LidarData);
             }
