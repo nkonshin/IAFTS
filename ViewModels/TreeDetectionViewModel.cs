@@ -8,6 +8,7 @@ using System.Reactive;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using System.Linq;
+using IAFTS.Views;
 
 namespace IAFTS.ViewModels
 {
@@ -188,6 +189,11 @@ namespace IAFTS.ViewModels
             CopyIfExists(LidarData.CsvFilePath, "result.csv");
             CopyIfExists(LidarData.ImageFilePath, "result.jpg");
             // Можно добавить копирование других файлов, если потребуется
+
+            // Показываем собственное окно InfoDialog
+            var dialog = new InfoDialog("Файлы успешно сохранены!");
+            // Используем Show(Window) вместо ShowDialog(Window), чтобы не блокировать UI
+            dialog.Show(Window);
         }
     }
 }
