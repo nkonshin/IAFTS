@@ -21,7 +21,6 @@ namespace IAFTS.Models
         public double X { get; set; }  // EPSG координаты
         public double Y { get; set; }
         public double Height { get; set; }      // Высота дерева
-        public double Diameter { get; set; }    // Диаметр дерева
         public string? Species { get; set; }     // Порода дерева
     }
 }
