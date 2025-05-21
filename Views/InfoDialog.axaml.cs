@@ -9,6 +9,7 @@ namespace IAFTS.Views
         {
             InitializeComponent();
             this.FindControl<TextBlock>("MessageText").Text = message;
+            this.Topmost = true;
         }
 
         private void Ok_Click(object? sender, RoutedEventArgs e)
