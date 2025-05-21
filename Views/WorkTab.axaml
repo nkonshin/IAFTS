@@ -29,15 +29,15 @@
       </Border>
       <Grid Margin="0,8,0,0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="0.4*"/>
+          <ColumnDefinition Width="*"/>
           <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Button Content="Расчет объема" Background="#2DB874" 
                 Foreground="White" CornerRadius="20"
-                HorizontalAlignment="Right" Margin="0,0,8,0"/>
+                HorizontalAlignment="Left"/>
         <Button Content="Скачать отчет" Grid.Column="1" Background="#2DB874" 
                 Foreground="White" CornerRadius="20"
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Right"/>
       </Grid>
     </StackPanel>
   </Grid>
